@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Edit Profile</title>
+    <%- include('../partials/head.ejs') %>
+
+        <style>
+            body {
+                background-color: #f3f4f6;
+                min-height: 100vh;
+            }
+        </style>
+</head>
+
+<body>
+
+    <div class="container py-5" style="max-width: 600px;">
+
+        <h2 class="mb-4">Edit Profile</h2>
+
+        <form method="POST" action="/user/edit-profile" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <img src="<%= user.profileImage %>" alt="profile" class="rounded-circle mb-3"
+                    style="width:80px;height:80px;object-fit:cover;">
+
+                <input type="file" class="form-control" name="profileImage">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" name="fullName" value="<%= user.fullName %>">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email ID</label>
+                <input type="email" class="form-control" name="email" value="<%= user.email %>">
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                Save Changes
+            </button>
+
+            <a href="/profile" class="btn btn-secondary ms-2">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+    <%- include('../partials/scripts.ejs') %>
+
+</body>
+
+</html>
