@@ -23,16 +23,25 @@ async function handleSignin(req, res) {
   }
 }
 async function editProfile(req, res) {
-  
   const { fullName, email } = req.body;
-  const imageName = req.file ? req.file.filename : null;
+
   const user = await User.findById(req.user._id);
 
-  const update = await User.findByIdAndUpdate(user._id, {
-    fullName: fullName,
-    email: email,
-    profileImage: req.file ? "/uploads/" + imageName : undefined,
-  });
+  const updateData = {
+    fullName,
+    email,
+  };
+
+  if (req.file) {
+    updateData.profileImage = req.file.path;
+  }
+
+  const update = await User.findByIdAndUpdate(
+    user._id,
+    updateData,
+    { new: true }
+  );
+
   console.log("Updated User:", update);
   return res.redirect("/profile");
 }

@@ -3,13 +3,12 @@ const Comment = require("../model/comment");
 async function handleCreateBlog(req, res) {
   const { title, body } = req.body;
 
-  const imageName = req.file ? req.file.filename : null;
-  await Blog.create({
-    title,
-    body,
-    createdBy: req.user._id,
-    coverImageUrl: req.file ? "/uploads/" + imageName : undefined,
-  });
+ await Blog.create({
+  title,
+  body,
+  createdBy: req.user._id,
+  coverImageUrl: req.file ? req.file.path : undefined,
+});
 
   return res.redirect("/");
 }
