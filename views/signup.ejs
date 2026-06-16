@@ -8,7 +8,12 @@
 
 <body class="bg-light">
   <!-- NAVBAR (same theme) -->
-  <%- include('../partials/navbar.ejs') %>
+<% if (typeof error !== 'undefined' && error) { %>
+  <div class="alert alert-danger text-center py-2">
+    <%= error %>
+  </div>
+<% } %>
+
 
     <!-- PAGE WRAPPER -->
     <div class="container min-vh-100 d-flex align-items-center justify-content-center">

@@ -9,7 +9,14 @@
 <body class="bg-light">
 
   <!-- NAVBAR (same theme) -->
+
   <%- include('../partials/navbar.ejs') %>
+  <h1><%= success %></h1>
+  <% if (typeof success !== 'undefined' && success) { %>
+  <div class="alert alert-success text-center py-2">
+    <%= success %>
+  </div>
+<% } %>
 
     <!-- SIGNIN WRAPPER -->
     <div class="container min-vh-100 d-flex align-items-center justify-content-center">
